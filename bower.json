@@ -1,0 +1,26 @@
+{
+  "name": "Gulp Angular",
+  "version": "0.0.1",
+  "authors": [
+    "Cihad Horuzoglu <cihadhoruzoglu@gmail.com>"
+  ],
+  "description": "Angular project best practice with Gulp",
+  "keywords": [
+    "angular",
+    "gulp"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "ionic": "1.0.0-beta.13",
+    "angular-mocks": "~1.3.1"
+  }
+}
