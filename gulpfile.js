@@ -6,7 +6,6 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     ngHtml2Js   = require("gulp-ng-html2js"),
     connect     = require("gulp-connect"),
-    iconfont    = require('gulp-iconfont'),
     gulpDocs    = require('gulp-ngdocs');
 
 gulp.task('default', ['js', 'css', 'ngHtml2js', 'connect', 'watch']);
@@ -42,23 +41,20 @@ gulp.task('html', function () {
 
 gulp.task('watch', function() {
     gulp.watch([
-        'public/css/*.css',
-        'public/**/*.js'
+        'app/css/**/*.less',
+        'app/js/**/*.js',
+        'app/html/*.html'
     ], function(event) {
         return gulp.src(event.path)
             .pipe(connect.reload());
     });
 
-    gulp.watch(['./app/controllers/*.js', './app/services/*.js'], ['js']);
-    gulp.watch(['./app/css/*.less', './app/lib/ionic/release/css/ionic.css'], ['css']);
-    gulp.watch(['./app/html/*.html'], ['ngHtml2js']);
+    gulp.watch(['./app/js/**/*.js'], ['js']);
+    gulp.watch(['./app/css/**/*.less'], ['css']);
+    gulp.watch(['./app/html/*.html'], ['html']);
 });
 
 gulp.task('ngdocs', [], function () {
-//    var options = {
-//        scripts: ['../app.min.js']
-//    };
-
     return gulp.src(['./app/controllers/*.js', './app/app.js'])
         .pipe(gulpDocs.process())
         .pipe(gulp.dest('docs'));
@@ -69,4 +65,3 @@ gulp.task('connect', function() {
         livereload: true
     });
 });
-
