@@ -6,15 +6,14 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/home.html',
-    '<ion-view title="Home">\n' +
+    '<ion-view title="{{title}}">\n' +
     '    <ion-nav-buttons side="left">\n' +
     '        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>\n' +
     '    </ion-nav-buttons>\n' +
     '    <ion-content class="has-header">\n' +
-    '        <h1 ng-bind="test"></h1>\n' +
-    '        <a href="">Test3</a>\n' +
-    '        <ion-item ng-repeat="venue in venues.data.response.venues">\n' +
-    '            {{venue.name}}\n' +
+    '        <h2>Person List</h2>\n' +
+    '        <ion-item ng-repeat="person in persons">\n' +
+    '            {{person.Name}} {{person.Surname}}\n' +
     '        </ion-item>\n' +
     '    </ion-content>\n' +
     '</ion-view>\n' +
