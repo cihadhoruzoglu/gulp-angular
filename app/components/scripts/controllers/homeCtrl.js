@@ -10,6 +10,8 @@ angular.module('gulpApp.home', [])
             { title: 'Cowbell', id: 6 }
         ];
 
+        $scope.test = "Test2";
+
         api.searchVenue('test').then(function(data) {
             $scope.venues = data;
         });

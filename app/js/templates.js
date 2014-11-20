@@ -11,7 +11,8 @@ module.run(['$templateCache', function($templateCache) {
     '        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>\n' +
     '    </ion-nav-buttons>\n' +
     '    <ion-content class="has-header">\n' +
-    '        <h1>Home Page</h1>\n' +
+    '        <h1 ng-bind="test"></h1>\n' +
+    '        <a href="">Test3</a>\n' +
     '        <ion-item ng-repeat="venue in venues.data.response.venues">\n' +
     '            {{venue.name}}\n' +
     '        </ion-item>\n' +

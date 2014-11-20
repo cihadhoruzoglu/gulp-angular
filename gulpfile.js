@@ -8,7 +8,7 @@ var gulp        = require('gulp'),
     connect     = require("gulp-connect"),
     gulpDocs    = require('gulp-ngdocs');
 
-gulp.task('default', ['js', 'css', 'ngHtml2js', 'connect', 'watch']);
+gulp.task('default', ['js', 'css', 'html', 'connect', 'watch']);
 
 gulp.task('js', function() {
    gulp.src('./app/components/scripts/**/*.js')
@@ -39,27 +39,19 @@ gulp.task('html', function () {
         }))
         .pipe(concat('templates.js'))
         .pipe(gulp.dest('./app/js'))
+        .pipe(connect.reload())
 });
 
 gulp.task('watch', function() {
-//    gulp.watch([
-//        'app/css/**/*.less',
-//        'app/js/**/*.js',
-//        'app/html/*.html'
-//    ], function(event) {
-//        return gulp.src(event.path)
-//            .pipe(connect.reload());
-//    });
-
-    gulp.watch(['./app/js/app.js'], ['js']);
-    gulp.watch(['./app/css/**/*.less'], ['css']);
-    gulp.watch(['./app/html/*.html'], ['html']);
+    gulp.watch(['./app/components/scripts/**/*.js'], ['js']);
+    gulp.watch(['./app/components/less/**/*.less'], ['css']);
+    gulp.watch(['./app/components/templates/*.html'], ['html']);
 });
 
-gulp.task('ngdocs', [], function () {
-    return gulp.src(['./app/controllers/*.js', './app/app.js'])
+gulp.task('doc', [], function () {
+    return gulp.src(['./app/js/app.js'])
         .pipe(gulpDocs.process())
-        .pipe(gulp.dest('docs'));
+        .pipe(gulp.dest('./docs'));
 });
 
 gulp.task('connect', function() {
