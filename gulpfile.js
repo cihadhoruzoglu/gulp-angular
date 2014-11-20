@@ -11,45 +11,47 @@ var gulp        = require('gulp'),
 gulp.task('default', ['js', 'css', 'ngHtml2js', 'connect', 'watch']);
 
 gulp.task('js', function() {
-   gulp.src(['./app/js/**/*.js', '!./app/js/app.js', '!./app/js/app.min.js'])
+   gulp.src('./app/components/scripts/**/*.js')
        .pipe(concat('app.js'))
        .pipe(gulp.dest('./app/js/'))
        .pipe(rename({suffix: '.min'}))
        .pipe(uglify())
        .pipe(gulp.dest('./app/js/'))
+       .pipe(connect.reload())
 });
 
 gulp.task('css', function () {
-    gulp.src(['./app/css/*.less'])
+    gulp.src(['./app/components/less/**/*.less'])
         .pipe(less())
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('./app/css'))
+        .pipe(gulp.dest('./app/css/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
-        .pipe(gulp.dest('./app/css'))
+        .pipe(gulp.dest('./app/css/'))
+        .pipe(connect.reload())
 });
 
 gulp.task('html', function () {
-    gulp.src('./app/html/*.html')
+    gulp.src('./app/components/templates/*.html')
         .pipe(ngHtml2Js({
             moduleName: 'templates',
             prefix: 'partials/'
         }))
         .pipe(concat('templates.js'))
-        .pipe(gulp.dest('./app/html'))
+        .pipe(gulp.dest('./app/js'))
 });
 
 gulp.task('watch', function() {
-    gulp.watch([
-        'app/css/**/*.less',
-        'app/js/**/*.js',
-        'app/html/*.html'
-    ], function(event) {
-        return gulp.src(event.path)
-            .pipe(connect.reload());
-    });
+//    gulp.watch([
+//        'app/css/**/*.less',
+//        'app/js/**/*.js',
+//        'app/html/*.html'
+//    ], function(event) {
+//        return gulp.src(event.path)
+//            .pipe(connect.reload());
+//    });
 
-    gulp.watch(['./app/js/**/*.js'], ['js']);
+    gulp.watch(['./app/js/app.js'], ['js']);
     gulp.watch(['./app/css/**/*.less'], ['css']);
     gulp.watch(['./app/html/*.html'], ['html']);
 });
