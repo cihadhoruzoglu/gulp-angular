@@ -2,7 +2,7 @@ angular.module('gulpApp.home', [])
 
     .controller('HomeCtrl', function($scope, api) {
 
-        $scope.title = "Home Page";
+        $scope.title = "Anasayfa";
 
         api.getPersons().then(function(data) {
             $scope.persons = data;

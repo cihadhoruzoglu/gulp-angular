@@ -59,3 +59,9 @@ gulp.task('connect', function() {
         livereload: true
     });
 });
+
+gulp.task('copy', function() {
+
+   gulp.src(['./app/css/*', './app/js/*', './app/index.html'], {base: './app'})
+       .pipe(gulp.dest('./dest'))
+});
