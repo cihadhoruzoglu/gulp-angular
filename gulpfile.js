@@ -1,3 +1,4 @@
+// Plugins
 var gulp        = require('gulp'),
     less        = require('gulp-less'),
     minifycss   = require('gulp-minify-css'),
@@ -8,8 +9,10 @@ var gulp        = require('gulp'),
     connect     = require("gulp-connect"),
     gulpDocs    = require('gulp-ngdocs');
 
+// Default gulp task & dependencies
 gulp.task('default', ['js', 'css', 'html', 'connect', 'watch']);
 
+// JavaScript task
 gulp.task('js', function() {
    gulp.src('./app/components/scripts/**/*.js')
        .pipe(concat('app.js'))
@@ -20,6 +23,7 @@ gulp.task('js', function() {
        .pipe(connect.reload())
 });
 
+// CSS task
 gulp.task('css', function () {
     gulp.src(['./app/components/less/**/*.less'])
         .pipe(less())
@@ -31,6 +35,7 @@ gulp.task('css', function () {
         .pipe(connect.reload())
 });
 
+// Html to js task
 gulp.task('html', function () {
     gulp.src('./app/components/templates/*.html')
         .pipe(ngHtml2Js({
@@ -42,26 +47,29 @@ gulp.task('html', function () {
         .pipe(connect.reload())
 });
 
+// Watchers
 gulp.task('watch', function() {
     gulp.watch(['./app/components/scripts/**/*.js'], ['js']);
     gulp.watch(['./app/components/less/**/*.less'], ['css']);
     gulp.watch(['./app/components/templates/*.html'], ['html']);
 });
 
-gulp.task('doc', [], function () {
-    return gulp.src(['./app/js/app.js'])
-        .pipe(gulpDocs.process())
-        .pipe(gulp.dest('./docs'));
-});
-
+// Connect to server
 gulp.task('connect', function() {
     connect.server({
         livereload: true
     });
 });
 
-gulp.task('copy', function() {
+// Make Angular Docs
+gulp.task('doc', [], function () {
+    return gulp.src(['./app/js/app.js'])
+        .pipe(gulpDocs.process())
+        .pipe(gulp.dest('./docs'));
+});
 
+// Copy files if needed '/dest' folder
+gulp.task('copy', function() {
    gulp.src(['./app/css/*', './app/js/*', './app/index.html'], {base: './app'})
        .pipe(gulp.dest('./dest'))
 });

@@ -6,13 +6,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/home.html',
-    '<ion-view title="{{title}}">\n' +
+    '<ion-view title="Home">\n' +
     '    <ion-nav-buttons side="left">\n' +
     '        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>\n' +
     '    </ion-nav-buttons>\n' +
     '    <ion-content class="has-header">\n' +
-    '        <h2>Person Listesi</h2>\n' +
-    '        <ion-item ng-repeat="person in persons">\n' +
+    '        <h2>Person List</h2>\n' +
+    '        <ion-item ng-repeat="person in persons" sref="app.person">\n' +
     '            {{person.Name}} {{person.Surname}}\n' +
     '        </ion-item>\n' +
     '    </ion-content>\n' +
@@ -44,17 +44,8 @@ module.run(['$templateCache', function($templateCache) {
     '        </header>\n' +
     '        <ion-content class="has-header">\n' +
     '            <ion-list>\n' +
-    '                <ion-item nav-clear menu-close ng-click="login()">\n' +
-    '                    Login\n' +
-    '                </ion-item>\n' +
-    '                <ion-item nav-clear menu-close href="#/app/search">\n' +
-    '                    Search\n' +
-    '                </ion-item>\n' +
-    '                <ion-item nav-clear menu-close href="#/app/browse">\n' +
-    '                    Browse\n' +
-    '                </ion-item>\n' +
-    '                <ion-item nav-clear menu-close href="#/app/playlists">\n' +
-    '                    Playlists\n' +
+    '                <ion-item nav-clear menu-close href="#/app/home">\n' +
+    '                    Home\n' +
     '                </ion-item>\n' +
     '            </ion-list>\n' +
     '        </ion-content>\n' +

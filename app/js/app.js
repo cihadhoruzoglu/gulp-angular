@@ -39,7 +39,7 @@ angular.module('gulpApp.main', [])
 
 /**
  * @ngdoc service
- * @name $customTimeout
+ * @name $timeout
  *
  * @description
  * Angular's wrapper for `window.setTimeout`. The `fn` function is wrapped into a try/catch
@@ -63,9 +63,9 @@ angular.module('gulpApp.main', [])
  *
  */
 
-    .controller('MainCtrl', function($scope, $ionicModal, $timeout) {
-        // Form data for the login modal
-        $scope.main = "Main Data";
+    .controller('MainCtrl', function($scope) {
+        // Main data model
+        $scope.main = {};
     });
 
 
@@ -82,8 +82,16 @@ angular.module('gulpApp.rest', [])
                         Surname: "Horuzoglu"
                     },
                     {
+                        Name: "Ayse",
+                        Surname: "Gumus"
+                    },
+                    {
                         Name: "Erdi",
                         Surname: "Acar"
+                    },
+                    {
+                        Name: "Azra",
+                        Surname: "Bolat"
                     },
                     {
                         Name: "Mustafa",
@@ -94,7 +102,7 @@ angular.module('gulpApp.rest', [])
                         Surname: "Calisir"
                     },
                     {
-                        Name: "Onur Alp",
+                        Name: "Onuralp",
                         Surname: "Taner"
                     }
                 ];

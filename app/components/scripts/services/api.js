@@ -12,8 +12,16 @@ angular.module('gulpApp.rest', [])
                         Surname: "Horuzoglu"
                     },
                     {
+                        Name: "Ayse",
+                        Surname: "Gumus"
+                    },
+                    {
                         Name: "Erdi",
                         Surname: "Acar"
+                    },
+                    {
+                        Name: "Azra",
+                        Surname: "Bolat"
                     },
                     {
                         Name: "Mustafa",
@@ -24,7 +32,7 @@ angular.module('gulpApp.rest', [])
                         Surname: "Calisir"
                     },
                     {
-                        Name: "Onur Alp",
+                        Name: "Onuralp",
                         Surname: "Taner"
                     }
                 ];
