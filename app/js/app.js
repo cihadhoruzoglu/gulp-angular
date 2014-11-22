@@ -1,7 +1,7 @@
 
 angular.module('gulpApp', ['ionic', 'templates', 'gulpApp.main', 'gulpApp.home', 'gulpApp.rest'])
 
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
         $stateProvider
 
             .state('app', {
@@ -22,19 +22,19 @@ angular.module('gulpApp', ['ionic', 'templates', 'gulpApp.main', 'gulpApp.home',
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');
-    });
+    }]);
 
 
 angular.module('gulpApp.home', [])
 
-    .controller('HomeCtrl', function($scope, api) {
+    .controller('HomeCtrl', ["$scope", "api", function($scope, api) {
 
         $scope.title = "Anasayfa";
 
         api.getPersons().then(function(data) {
             $scope.persons = data;
         });
-    });
+    }]);
 angular.module('gulpApp.main', [])
 
 /**
@@ -63,14 +63,14 @@ angular.module('gulpApp.main', [])
  *
  */
 
-    .controller('MainCtrl', function($scope) {
+    .controller('MainCtrl', ["$scope", function($scope) {
         // Main data model
         $scope.main = {};
-    });
+    }]);
 
 
 angular.module('gulpApp.rest', [])
-    .factory("api", function($q, $timeout) {
+    .factory("api", ["$q", "$timeout", function($q, $timeout) {
 
         return {
             getPersons: function() {
@@ -114,4 +114,4 @@ angular.module('gulpApp.rest', [])
                 return deferred.promise;
             }
         }
-    });
+    }]);

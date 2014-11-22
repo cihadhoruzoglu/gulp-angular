@@ -7,7 +7,8 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     ngHtml2Js   = require("gulp-ng-html2js"),
     connect     = require("gulp-connect"),
-    gulpDocs    = require('gulp-ngdocs');
+    gulpDocs    = require('gulp-ngdocs'),
+    ngAnnotate = require('gulp-ng-annotate');
 
 // Default gulp task & dependencies
 gulp.task('default', ['js', 'css', 'html', 'connect', 'watch']);
@@ -16,6 +17,7 @@ gulp.task('default', ['js', 'css', 'html', 'connect', 'watch']);
 gulp.task('js', function() {
    gulp.src('./app/components/scripts/**/*.js')
        .pipe(concat('app.js'))
+       .pipe(ngAnnotate())
        .pipe(gulp.dest('./app/js/'))
        .pipe(rename({suffix: '.min'}))
        .pipe(uglify())
@@ -63,7 +65,7 @@ gulp.task('connect', function() {
 
 // Make Angular Docs
 gulp.task('doc', [], function () {
-    return gulp.src(['./app/js/app.js'])
+    gulp.src(['./app/js/app.js'])
         .pipe(gulpDocs.process())
         .pipe(gulp.dest('./docs'));
 });
